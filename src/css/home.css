@@ -19,14 +19,35 @@
     width: 100%;
 }
 
-h1 {
-    margin: 0;
+.home-header {
+    margin: 0 0 15rem;
     text-align: center;
+    font-size: 5rem;
 }
 
 .content-container {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+#address-form {
+    align-items: stretch;
+    min-width: 60rem;
+}
+
+#address-input {
+   flex: 1;
+   font-size: 2rem;
+}
+
+#address-dropdown {
+    height: auto;
+    font-size: 2rem;
+}
+
+#address-submit {
+    font-size: 2rem;
 }

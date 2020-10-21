@@ -14,11 +14,15 @@ class Home extends React.Component {
                     </video>
 
                     <div className="content-container">
-                        <h1>Find Your Home</h1>
+                        <h1 className="home-header text-white">Find Your Home</h1>
 
-                        <form>
-                            <input type="text" />
-                            <input type="submit" name="submit" />
+                        <form className="form-inline" id="address-form">
+                            <input type="text" className="form-control" id="address-input" placeholder="Enter Address" />
+                            <select class="form-control" id="address-dropdown">
+                                <option>Rent</option>
+                                <option>Buy</option>
+                            </select>
+                            <button type="submit" className="btn btn-primary" id="address-submit">Submit</button>
                         </form>
                     </div>
                 </div>
