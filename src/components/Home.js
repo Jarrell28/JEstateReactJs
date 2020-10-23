@@ -5,13 +5,21 @@ import "../css/home.css";
 import vid from "../img/background-video1.mp4";
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-    // componentDidMount() {
-    //     const script = document.createElement("script");
-    //     script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDfTGTkObTRIDLZ4KVJTbdmPfXccrtYmuc&libraries=places&callback=";
-    //     script.defer = true;
-    //     document.body.appendChild(script);
-    // }
+    onSelectChange = (e) => {
+        //Gets index of HTML selected option
+        const selectedIndex = e.target.options.selectedIndex
+        //Gets value of HTML selected option
+        const selectValue = e.target.options[selectedIndex].value;
+
+        //Updates state lookingTo variable
+        this.props.updateLookingTo(selectValue);
+    }
+
+    //create function to validate address bar values
 
     render() {
         return (
@@ -27,22 +35,26 @@ class Home extends React.Component {
                         <h1 className="home-header text-white">Find Your Home</h1>
 
                         <form className="form-inline" id="address-form" autoComplete="off">
-                            {/* <input type="text" className="form-control" id="address-input" placeholder="Enter Address" /> */}
                             <Autocomplete
                                 className="form-control"
                                 id="address-input"
                                 onPlaceSelected={(place) => {
+                                    let zipCode = ""
+                                    if (place.address_components[7].long_name) {
+                                        zipCode = place.address_components[7].long_name;
+                                    }
                                     console.log(place);
+                                    this.props.updateAddress(zipCode);
                                 }}
                                 types={['address']}
                                 componentRestrictions={{ country: "us" }}
-                                placeholder="Enter address"
+                                placeholder="Enter street address or zip code"
                                 inputAutocompleteValue="off"
 
                             />
-                            <select className="form-control" id="address-dropdown">
-                                <option>Rent</option>
-                                <option>Buy</option>
+                            <select className="form-control" id="address-dropdown" onChange={this.onSelectChange}>
+                                <option value="Rent" defaultValue>Rent</option>
+                                <option value="Buy">Buy</option>
                             </select>
                             <button type="submit" className="btn btn-primary" id="address-submit">Submit</button>
                         </form>

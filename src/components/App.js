@@ -10,6 +10,22 @@ import '../css/app.css';
 import Home from "./Home";
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      zipCode: "",
+      lookingTo: "Rent"
+    }
+  }
+
+  updateAddress = (zipCode) => {
+    this.setState({ zipCode });
+  }
+
+  updateLookingTo = (lookingTo) => {
+    this.setState({ lookingTo });
+  }
 
   render() {
     return (
@@ -18,7 +34,7 @@ class App extends React.Component {
 
           <Switch>
             <Route path="/">
-              <Home />
+              <Home updateAddress={this.updateAddress} updateLookingTo={this.updateLookingTo} />
             </Route>
           </Switch>
         </Router>
