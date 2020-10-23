@@ -3,11 +3,15 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  useHistory
 } from "react-router-dom";
+
+
 import '../css/app.css';
 
 import Home from "./Home";
+import Listing from "./Listing";
 
 class App extends React.Component {
   constructor(props) {
@@ -28,16 +32,18 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <div>
-        <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home updateAddress={this.updateAddress} updateLookingTo={this.updateLookingTo} />
+          </Route>
+          <Route exact path="/listing">
+            <Listing />
+          </Route>
+        </Switch>
 
-          <Switch>
-            <Route path="/">
-              <Home updateAddress={this.updateAddress} updateLookingTo={this.updateLookingTo} />
-            </Route>
-          </Switch>
-        </Router>
       </div>
     )
   }

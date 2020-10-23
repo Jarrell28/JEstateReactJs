@@ -1,5 +1,6 @@
 import React from 'react';
 import Autocomplete from 'react-google-autocomplete';
+import { Redirect } from 'react-router-dom';
 
 import "../css/home.css";
 import vid from "../img/background-video1.mp4";
@@ -19,6 +20,14 @@ class Home extends React.Component {
         this.props.updateLookingTo(selectValue);
     }
 
+    onFormSubmit = (e) => {
+        e.preventDefault();
+        console.log('redirect');
+        return <Redirect to="/listing" />
+    }
+
+
+
     //create function to validate address bar values
 
     render() {
@@ -34,7 +43,7 @@ class Home extends React.Component {
                     <div className="content-container">
                         <h1 className="home-header text-white">Find Your Home</h1>
 
-                        <form className="form-inline" id="address-form" autoComplete="off">
+                        <form className="form-inline" id="address-form" autoComplete="off" onSubmit={this.onFormSubmit}>
                             <Autocomplete
                                 className="form-control"
                                 id="address-input"
@@ -57,8 +66,11 @@ class Home extends React.Component {
                                 <option value="Buy">Buy</option>
                             </select>
                             <button type="submit" className="btn btn-primary" id="address-submit">Submit</button>
+
                         </form>
                     </div>
+
+
                 </div>
 
 
